@@ -20,7 +20,9 @@ done
 for j in {0..3};
 do 
    cp result$j result$j.tmp
-   cat result$j.tmp | sed '/^-/ d' | sed 's/|/\n/g' | sed 's/"//g' | sed '/routers:/ d'| sed '/promotionorderable:/ d' | sed '/regexps:/ d' | sort -u  > result$j
+   cat result$j.tmp | sed '/^-/ d' | sed 's/|/\n/g' | sed 's/"//g' | sed '/routers:/ d'| sed '/promotionorderable:/ d' | sed '/regexps:/ d' | sort -u > result$j
+#   cp result$j  result$j.tmp
+#   cat result$j.tmp | sort -u > result$j
    rm -f result$j.tmp
 done
 
