@@ -25,7 +25,7 @@ do
 #   cat result$j.tmp | sort -u > result$j
    rm -f result$j.tmp
 done
-
+boucle=0
 
 for z in  {0..3}
 do
@@ -69,7 +69,7 @@ EOF
 EOF
         fi  
 
-	for k in $(cat result{0..3})
+	for k in $(cat result$boucle)
 	do
   	  listhotel+=( "$k")
 	done
@@ -80,7 +80,8 @@ EOF
   	  	  	  listline=("${listline[@]}" "${listhotel[$number]}")
   	  	  	  number=$((number+1))
   	  	  	  repet=0
-  	   	  	  echo "${listline[@]}" | sed 's/ /|/g' | sed 's/^/\t- "/' | sed 's/$/"/' >> final
+			  #  echo "${listline[@]}" | sed 's/ /|/g' | sed 's/^/\t- "/' | sed 's/$/"/' >> final
+  			  echo "${listline[@]}" | sed 's/ /|/g' | sed 's/^/        - "/' | sed 's/$/"/' >> final
   	  	  	  listline=()
 			else
   	  	  	  listline=("${listline[@]}" "${listhotel[$number]}")
@@ -88,7 +89,9 @@ EOF
   	  	  	  repet=$((repet+1))
 			fi
 		done
-  echo "${listline[@]}" | sed 's/ /|/g' | sed 's/^/\t- "/' | sed 's/$/"/' >> final
+#  echo "${listline[@]}" | sed 's/ /|/g' | sed 's/^/\t- "/' | sed 's/$/"/' >> final
+  echo "${listline[@]}" | sed 's/ /|/g' | sed 's/^/        - "/' | sed 's/$/"/' >> final
+  boucle=$((boucle+1))
 done
 
 rm result[0-3]
